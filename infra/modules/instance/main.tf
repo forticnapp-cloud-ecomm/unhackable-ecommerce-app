@@ -56,9 +56,7 @@ resource "aws_security_group" "ingress-from-all" {
 }
 
 resource "aws_instance" "instance-server" {
-  tags = merge({ "Name" = "${var.instance_name}" }, {
-    for t in local.new_tags : element(split("=", t), 0) => element(split("=", t), 1) if t != ""
-  })
+  tags = merge({ "Name" = "rpt-backend" })
   ami                         = var.ami_id
   instance_type               = var.instance_type
   associate_public_ip_address = tobool(var.public_ip)

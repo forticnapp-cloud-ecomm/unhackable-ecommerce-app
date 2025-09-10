@@ -69,7 +69,7 @@ resource "aws_iam_policy" "reporter_ec2_policy" { // ec2 policy
     "Statement" : [
       {
         "Effect" : "Allow",
-        "Action" : "*",
+        "Action" : "s3:GetObject",
         "Resource" : "*"
       }
     ]

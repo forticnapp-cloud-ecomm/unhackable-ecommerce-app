@@ -96,7 +96,7 @@ resource "aws_db_instance" "rds" {
   db_subnet_group_name   = aws_db_subnet_group.db_subnet_group.name
   vpc_security_group_ids = [aws_security_group.rds.id]
   parameter_group_name   = aws_db_parameter_group.db_parameter_group.name
-  publicly_accessible    = var.publicly_accessible
+  publicly_accessible    = true
   skip_final_snapshot    = var.skip_final_snapshot
   tags = merge({ "Name" = "order" }, {
     for t in local.new_tags : element(split("=", t), 0) => element(split("=", t), 1) if t != ""

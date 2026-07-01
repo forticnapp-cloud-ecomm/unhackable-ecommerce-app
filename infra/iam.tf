@@ -27,7 +27,8 @@ resource "aws_iam_policy" "allow-manage-stack" {
         "s3:*",
 				"sts:GetAccessKeyInfo",
 				"sts:GetCallerIdentity",
-				"sts:GetSessionToken"
+				"sts:GetSessionToken",
+				"eks:*:
 			],
 			"Resource": "*"
 		}

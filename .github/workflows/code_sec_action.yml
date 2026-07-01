@@ -18,7 +18,7 @@ jobs:
     name: Run analysis
     strategy:
       matrix:
-        target: [old]
+        target: [new]
     steps:
       - name: Checkout repository
         uses: actions/checkout@v6

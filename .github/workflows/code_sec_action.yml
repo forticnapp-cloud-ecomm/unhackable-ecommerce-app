@@ -36,5 +36,11 @@ jobs:
     name: Display results
     needs:
       - run-analysis
-    run: |
-      chmod +x ./scripts/deploy.sh
+    steps:
+      - run: ls -lah
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+
+
+          

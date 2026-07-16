@@ -15,7 +15,7 @@ name: Lacework Code Security (PR)
 jobs:
   run-analysis:
     runs-on: self-hosted
-    name: Run analysis
+    name: Checkout code
     strategy:
       matrix:
         target: [new]
@@ -29,7 +29,7 @@ jobs:
         run: git checkout HEAD^1
   sca-scanning:
     runs-on: self-hosted
-    name: Display results
+    name: SCA Scan
     needs:
       - run-analysis
     steps:
@@ -39,9 +39,10 @@ jobs:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   iax-scanning:
     runs-on: self-hosted
-    name: Display results
+    name: IaC Scan
     needs:
       - run-analysis
+      - sca-scanning
     steps:
       - run: |
           lacework sca scan .

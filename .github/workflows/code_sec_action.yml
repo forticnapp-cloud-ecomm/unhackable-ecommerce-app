@@ -27,17 +27,15 @@ jobs:
       - name: Checkout old
         if: ${{ matrix.target == 'old' }}
         run: git checkout HEAD^1
-      - name: Analyze
-        uses: lacework/code-security-action@v1
-        with:
-          target: ${{ matrix.target }}
   display-results:
     runs-on: self-hosted
     name: Display results
     needs:
       - run-analysis
     steps:
-      - run: ls -lah
+      - run: |
+          lacework iac scan --directory .
+          lacework sca scan .
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 

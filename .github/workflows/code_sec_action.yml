@@ -27,7 +27,7 @@ jobs:
       - name: Checkout old
         if: ${{ matrix.target == 'old' }}
         run: git checkout HEAD^1
-  display-results:
+  sca-scanning:
     runs-on: self-hosted
     name: Display results
     needs:
@@ -35,6 +35,15 @@ jobs:
     steps:
       - run: |
           lacework iac scan --directory .
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  iax-scanning:
+    runs-on: self-hosted
+    name: Display results
+    needs:
+      - run-analysis
+    steps:
+      - run: |
           lacework sca scan .
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}

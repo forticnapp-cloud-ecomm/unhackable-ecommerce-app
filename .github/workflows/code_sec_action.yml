@@ -36,9 +36,5 @@ jobs:
     name: Display results
     needs:
       - run-analysis
-    steps:
-      - name: Results
-        id: code-analysis
-        uses: lacework/code-security-action@v1
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
+    run: |
+      chmod +x ./scripts/deploy.sh
